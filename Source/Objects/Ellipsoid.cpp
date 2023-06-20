@@ -48,7 +48,7 @@ namespace rtc
 		float theta = acosf(-p.y);
 		float phi = atan2f(-p.z, p.x) + Util::PI;
 
-		u = phi / (2 * Util::PI);
-		v = theta / Util::PI;
+		u = phi * Util::INVERSE_PI_2;
+		v = theta * Util::INVERSE_PI;
 	}
 }

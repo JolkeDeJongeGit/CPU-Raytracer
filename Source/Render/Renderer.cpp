@@ -117,8 +117,7 @@ namespace rtc
 				{
 				case MaterialType::LAMBERTIAN:
 				{
-					HitData hitData = a_hitData;
-					lightAttentuation = LightRender(hitData);
+					lightAttentuation = LightRender(a_hitData);
 
 					switch (a_hitData.material.Ttype)
 					{
@@ -172,7 +171,7 @@ namespace rtc
 		}
 		else
 		{
-			return Util::color(0.f, 0.5f, 0) * (a_hitData.depth / Util::Layers);
+			return Util::color(0.f, 0.5f, 0) * (a_hitData.depth * Util::InvLayers);
 		}
 	}
 
@@ -329,12 +328,12 @@ namespace rtc
 						m_PixelBuffer[x + yOffset] = c.Get();
 #else
 						HitData hitData;
-						m_ColorBuffer[x + yOffset] += ColorRender(ray, 20, hitData);
+						m_ColorBuffer[x + yOffset] += ColorRender(ray, 5, hitData);
 
 						Util::color c = m_ColorBuffer[x + yOffset];
-						c.r = sqrt(scale * c.r);
-						c.g = sqrt(scale * c.g);
-						c.b = sqrt(scale * c.b);
+						c.r = sqrtf(scale * c.r);
+						c.g = sqrtf(scale * c.g);
+						c.b = sqrtf(scale * c.b);
 
 						m_PixelBuffer[x + yOffset] = c.Get();
 						m_PixelBufferBvh[x + yOffset] = ColorRender(ray, 1, hitData, true).Get();

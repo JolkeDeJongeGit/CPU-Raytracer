@@ -144,7 +144,6 @@ namespace rtc
             m_SceneList.push_back(new Sphere(Util::point3(2.f, 0.f, 0.f), 1.0f, Material(Util::color(1.f, 0.807f, 0.705f), MaterialType::LAMBERTIAN)));
             m_Camera = Camera(50, (0.f, 0.f, 0.f), (0.f, 0.f, 5.f), 10.f, 0.1f);
             break;
-            break;
         }
         m_TreeNode = Util::BVHNode(m_SceneList, (uint32_t)0, (uint32_t)m_SceneList.size(), 1.f);
 	}

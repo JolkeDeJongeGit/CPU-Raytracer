@@ -2,6 +2,8 @@
 namespace Util
 {
 	constexpr float PI = 3.14159265358979323846264338327950288419716939937510582097494459072381640628620899862803482534211706798f;
+	constexpr float INVERSE_PI = 1.f / PI;
+	constexpr float INVERSE_PI_2 = 2.f * INVERSE_PI;
 	constexpr float DegToRad = 1.f / 180.f;
 	constexpr float RadToDeg = 1.f / PI;
 	template <typename T>

@@ -47,7 +47,7 @@ namespace rtc
             if (sint >= 1)
                 return 1.f;
 
-            float cost = sqrtf(std::max(0.f, 1 - sint * sint));
+            float cost = sqrtf(std::max(0.f, 1.f - sint * sint));
             cosoutside = fabsf(cosoutside);
             float Rs = ((ninside * cosoutside) - (noutside * cost)) / ((ninside * cosoutside) + (noutside * cost));
             float Rp = ((ninside * cosoutside) - (ninside * cost)) / ((noutside * cosoutside) + (ninside * cost));

@@ -242,10 +242,10 @@
     <ClCompile Include="Source\Util\DebugUI.cpp" />
     <ClCompile Include="Source\Materials\Dielectric.cpp" />
     <ClCompile Include="Source\Objects\Ellipsoid.cpp" />
-    <ClCompile Include="game.cpp" />
+    <ClCompile Include="Source\game.cpp" />
     <ClCompile Include="Source\Materials\Metal.cpp" />
     <ClCompile Include="Source\Objects\PointLight.cpp" />
-    <ClCompile Include="precomp.cpp">
+    <ClCompile Include="Source\precomp.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -270,13 +270,13 @@
     <ClInclude Include="Source\Render\DebugUI.h" />
     <ClInclude Include="Source\Materials\Dielectric.h" />
     <ClInclude Include="Source\Objects\Ellipsoid.h" />
-    <ClInclude Include="game.h" />
+    <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\Util\List.h" />
     <ClInclude Include="Source\Util\Math.h" />
     <ClInclude Include="Source\Materials\Metal.h" />
     <ClInclude Include="Source\Objects\PointLight.h" />
     <ClInclude Include="Source\Render\Renderer.h" />
-    <ClInclude Include="precomp.h" />
+    <ClInclude Include="Source\precomp.h" />
     <ClInclude Include="Source\Util\Raytracer\Ray.h" />
     <ClInclude Include="Source\Classes\Scene.h" />
     <ClInclude Include="Source\Objects\Sphere.h" />

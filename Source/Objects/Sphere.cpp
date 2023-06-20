@@ -2,6 +2,7 @@
 #include "Sphere.h"
 namespace rtc
 {
+	
 	bool Sphere::HitObject(const Util::Ray& a_R, float a_Min, float a_Max, HitData& a_HitData)
 	{
 		Util::vec3 directionSphere = a_R.m_Orig - m_Center; // gives the distance from the sphere to the ray orgin
@@ -43,7 +44,7 @@ namespace rtc
 		float theta = acosf(-p.y);
 		float phi = atan2f(-p.z, p.x) + Util::PI;
 
-		u = phi / (2 * Util::PI);
-		v = theta / Util::PI;
+		u = phi * Util::INVERSE_PI_2;
+		v = theta * Util::INVERSE_PI;
 	}
 }

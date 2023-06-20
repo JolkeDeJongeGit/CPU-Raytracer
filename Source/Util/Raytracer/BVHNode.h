@@ -5,6 +5,7 @@ namespace rtc { struct HitData; }
 namespace Util
 {
     inline float Layers = 1;
+    inline float InvLayers = 1;
     template<typename T>
     class BVHNode
     {
@@ -14,7 +15,7 @@ namespace Util
         {
             uint size = a_End - a_Begin;
             Layers = layer; // It stores how many layers there are in the bvh tree
-
+            InvLayers = 1.f / Layers;
             if (size == 1)
                 m_Object = a_List[a_Begin];
             else
