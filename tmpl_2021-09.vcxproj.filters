@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="TemplateCode\surface.cpp">
+      <Filter>template code</Filter>
+    </ClCompile>
+    <ClCompile Include="TemplateCode\template.cpp">
+      <Filter>template code</Filter>
+    </ClCompile>
+    <ClCompile Include="precomp.cpp" />
+    <ClCompile Include="Source\Util\Util.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Util\DebugUI.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Objects\Sphere.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Interfaces\BaseObject.cpp">
+      <Filter>src\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Objects\Cylinder.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Objects\PointLight.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Render\Renderer.cpp">
+      <Filter>src\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Scene.cpp">
+      <Filter>src\class</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Render\Tile.cpp">
+      <Filter>src\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Render\Camera.cpp">
+      <Filter>src\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Objects\Ellipsoid.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Materials\Metal.cpp">
+      <Filter>src\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Materials\Dielectric.cpp">
+      <Filter>src\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Util\Raytracer\Ray.cpp">
+      <Filter>src\util\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Util\Raytracer\BVHNode.cpp">
+      <Filter>src\util\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Textures\Texture.cpp">
+      <Filter>src\Texture</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game.h" />
+    <ClInclude Include="TemplateCode\surface.h">
+      <Filter>template code</Filter>
+    </ClInclude>
+    <ClInclude Include="TemplateCode\template.h">
+      <Filter>template code</Filter>
+    </ClInclude>
+    <ClInclude Include="precomp.h" />
+    <ClInclude Include="Source\Util\Math.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\Util.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\DebugUI.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Objects\Sphere.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interfaces\BaseObject.h">
+      <Filter>src\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Objects\Cylinder.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Objects\PointLight.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\Renderer.h">
+      <Filter>src\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Scene.h">
+      <Filter>src\class</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\Tile.h">
+      <Filter>src\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\Camera.h">
+      <Filter>src\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Objects\Ellipsoid.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Materials\Metal.h">
+      <Filter>src\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Materials\Dielectric.h">
+      <Filter>src\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\Raytracer\Ray.h">
+      <Filter>src\util\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\Raytracer\Box.h">
+      <Filter>src\util\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\Raytracer\BVHNode.h">
+      <Filter>src\util\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Textures\Texture.h">
+      <Filter>src\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Util\List.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="template code">
+      <UniqueIdentifier>{bf32dd6e-4be7-4889-8ac6-49e7ee163c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{a59fc8a7-f384-4517-852e-009999934e29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util">
+      <UniqueIdentifier>{73946d2e-57e6-4696-8942-73b3ca206f4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Objects">
+      <UniqueIdentifier>{f0937acf-599d-43ba-ba38-5d12c32a6dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\class">
+      <UniqueIdentifier>{a5b635a8-ac61-4ff4-b70d-c12959162717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Interface">
+      <UniqueIdentifier>{b258ec4a-47c9-4657-9deb-4bab251c537c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Render">
+      <UniqueIdentifier>{c323ff5d-0185-4834-9b99-6f904420e61a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Material">
+      <UniqueIdentifier>{61cb0bf5-2b46-41be-85b8-45df59349542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util\Raytracer">
+      <UniqueIdentifier>{dec62ce1-9c5a-41a5-90fd-41923a7ff0b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Texture">
+      <UniqueIdentifier>{dd720a17-edf7-4494-990c-1fa042c40ba6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="_readme.txt">
+      <Filter>template code</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
