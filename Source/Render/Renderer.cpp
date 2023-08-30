@@ -91,7 +91,7 @@ namespace rtc
 				m_Threads[i].join();
 	}
 
-	Template::Sprite s(new Template::Surface("assets/skybox.png"), 1);
+	Template::Sprite s(new Template::Surface("Assets/skybox.png"), 1);
 	float k = 1.f / 255;
 	float piDivide = 1.f / Util::PI;
 	// -----------------------------------------------------------
