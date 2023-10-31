@@ -39,6 +39,7 @@ namespace rtc
 	{
         m_LightList.clear();
         m_SceneList.clear();
+        
         Material material_ground = Material(Util::color(0.5f, 0.5f, 0.5f), MaterialType::LAMBERTIAN, 0.f, rtc::TextureType::CHECKER);
         Material material_test = Material(Util::color(0.0f, 0.2f, 0.7f), MaterialType::LAMBERTIAN);
 
@@ -99,7 +100,7 @@ namespace rtc
             Material mat1 = Material(Util::color(1.f, 1.f, 1.f), MaterialType::METAL, 0);
             Sphere* s = new Sphere(Util::point3(0.f, 0.f, -3.f), 0.5f, material_test);
             m_SceneList.push_back(s);
-            SphereFlake(3, m_SceneList, s);
+            SphereFlake(5, m_SceneList, s);
 
             m_LightList.push_back(std::make_unique<PointLight>(Util::vec3(0, 5, 0), Util::color(1, 1, 1), 1.f));
             m_Camera = Camera(50, Util::point3(0, 0, -3), Util::point3(3, 3, 5), 10.f, 0.01f);

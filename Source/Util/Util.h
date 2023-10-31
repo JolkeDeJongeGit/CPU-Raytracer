@@ -1,5 +1,6 @@
 #pragma once
 #include <random>
+#include <emmintrin.h>
 namespace Util
 {
 	typedef unsigned char uchar;
@@ -8,6 +9,39 @@ namespace Util
 	typedef unsigned long long uint64;
 	typedef unsigned int uint;
 	typedef unsigned int Pixel;
+	// identical to std::sqrt
+	inline float betterSqrt(const float f)
+	{
+		__m128 temp = _mm_set_ss(f);
+		temp = _mm_sqrt_ss(temp);
+		return _mm_cvtss_f32(temp);
+	}
+
+	// faster than  1.0f/std::sqrt, but with little accuracy.
+	inline float betterRsqrt(const float f)
+	{
+		__m128 temp = _mm_set_ss(f);
+		temp = _mm_rsqrt_ss(temp);
+		return _mm_cvtss_f32(temp);
+	}
+
+	// identical to std::sqrt
+	inline double betterSqrt(const double f)
+	{
+		__m128d temp = _mm_set_sd(f);
+		temp = _mm_sqrt_sd(temp, temp);
+		return _mm_cvtsd_f64(temp);
+	}
+
+	// identical to 1.0 / std::sqrt
+	// .... there isn't an instruction for rsqrt with double, 
+	// so 1.0 / std::sqrt is the best you've got. 
+	inline double betterRsqrt(const double f)
+	{
+		__m128d temp = _mm_set_sd(f);
+		temp = _mm_div_sd(_mm_set_sd(1.0), _mm_sqrt_sd(temp, temp));
+		return _mm_cvtsd_f64(temp);
+	}
 
 	class color
 	{
@@ -53,7 +87,7 @@ namespace Util
 		void operator *= (const vec2& a) { x *= a.x; y *= a.y; }
 		void operator *= (float a) { x *= a; y *= a; }
 		float& operator [] (const int idx) { return cell[idx]; }
-		float length() { return sqrtf(x * x + y * y); }
+		float length() { return betterSqrt(x * x + y * y); }
 		float sqrLentgh() { return x * x + y * y; }
 		vec2 normalized() { float r = 1.0f / length(); return vec2(x * r, y * r); }
 		void normalize() { float r = 1.0f / length(); x *= r; y *= r; }
@@ -86,7 +120,7 @@ namespace Util
 		void operator *= (const float a) { x *= a; y *= a; z *= a; }
 		float operator [] (const uint& idx) const { return cell[idx]; }
 		float& operator [] (const uint& idx) { return cell[idx]; }
-		float length() const { return sqrtf(sqrLength()); }
+		float length() const { return betterSqrt(sqrLength()); }
 		float sqrLength() const { return x * x + y * y + z * z; }
 		vec3 normalized() const { float r = 1.0f / length(); return vec3(x * r, y * r, z * r); }
 		void normalize() { float r = 1.0f / length(); x *= r; y *= r; z *= r; }
@@ -114,7 +148,7 @@ namespace Util
 		void operator *= (float a) { x *= a; y *= a; z *= a; w *= a; }
 		float& operator [] (const int idx) { return cell[idx]; }
 		float operator [] (const uint& idx) const { return cell[idx]; }
-		float length() { return sqrtf(x * x + y * y + z * z + w * w); }
+		float length() { return betterSqrt(x * x + y * y + z * z + w * w); }
 		float sqrLentgh() { return x * x + y * y + z * z + w * w; }
 		vec4 normalized() { float r = 1.0f / length(); return vec4(x * r, y * r, z * r, w * r); }
 		void normalize() { float r = 1.0f / length(); x *= r; y *= r; z *= r; w *= r; }
@@ -266,7 +300,7 @@ namespace Util
 	{
 		while (true)
 		{
-			Util::vec3 p = 2.f * Util::vec3(Util::frand(), Util::frand(), Util::frand()) - Util::vec3(1.f, 1.f, 1.f);
+			Util::vec3 p = 2.f * Util::vec3(frand(), frand(), frand()) - Util::vec3(1.f, 1.f, 1.f);
 			if (p.sqrLength() >= 1) continue;
 			return p;
 		}

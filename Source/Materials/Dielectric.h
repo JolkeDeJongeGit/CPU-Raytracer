@@ -43,11 +43,11 @@ namespace rtc
         float reflectance(float cosoutside, float ninside, float noutside) const
         {
             //Fernels equations
-            float sint = noutside / ninside * sqrtf(std::max(0.f, 1 - cosoutside * cosoutside));
+            float sint = noutside / ninside * Util::betterSqrt(std::max(0.f, 1 - cosoutside * cosoutside));
             if (sint >= 1)
                 return 1.f;
 
-            float cost = sqrtf(std::max(0.f, 1.f - sint * sint));
+            float cost = Util::betterSqrt(std::max(0.f, 1.f - sint * sint));
             cosoutside = fabsf(cosoutside);
             float Rs = ((ninside * cosoutside) - (noutside * cost)) / ((ninside * cosoutside) + (noutside * cost));
             float Rp = ((ninside * cosoutside) - (ninside * cost)) / ((noutside * cosoutside) + (ninside * cost));

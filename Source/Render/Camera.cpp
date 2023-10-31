@@ -7,7 +7,7 @@ namespace rtc
 	{
 		// Calculating the fov to the new viewport witdh and height
 		float fovRads = Util::DegreeToRads(m_Fov);
-		float viewportHeight = 2.0f * tanf(fovRads / 2);
+		float viewportHeight = 2.0f * tanf(fovRads *0.5f);
 		float viewportWidth = aspectRatio * viewportHeight;
 
 		// We rotate the local axis of the camera 
@@ -20,9 +20,9 @@ namespace rtc
 		m_ViewportWidth = a_FocusDist * viewportWidth * m_ZLocalAxis;
 
 		// Set the value on the top side of the screen based on the viewport
-		m_TopCorner = m_Translation + m_ViewportHeight / 2 - m_ViewportWidth / 2 - a_FocusDist*m_XLocalAxis;
+		m_TopCorner = m_Translation + m_ViewportHeight * 0.5f - m_ViewportWidth * 0.5f - a_FocusDist*m_XLocalAxis;
 		m_Aperture = a_Aperture;
-		m_LensRadius = a_Aperture / 2;
+		m_LensRadius = a_Aperture * 0.5f;
 		m_FocusDist = a_FocusDist;
 	}
 }

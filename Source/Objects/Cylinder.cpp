@@ -17,7 +17,7 @@ namespace rtc
 		// when the discriminant is smaller than 0 then we know it doesn't hit an sphere
 		if (discriminant > 0)
 		{
-			float sqrtfd = sqrtf(discriminant);
+			float sqrtfd = Util::betterSqrt(discriminant);
 			float t = (-b - sqrtfd) / a; //We will calculate the t value using the quadratic formula
 			// Find the nearest root that lies in the acceptable range.
 			if (t < a_Min || t > a_Max)

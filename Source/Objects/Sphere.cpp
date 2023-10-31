@@ -11,7 +11,7 @@ namespace rtc
 		float c = directionSphere.sqrLength() - m_SqrRadius; // It gets the distance from the ray to the shell.
 		float discriminant = b * b -  a * c; // to calculate the discriminant b*b - 4ac
 		if (discriminant < 0) return false; // when the discriminant is smaller than 0 then we know it doesn't hit an sphere
-		float sqrtfd = sqrtf(discriminant);
+		float sqrtfd = Util::betterSqrt(discriminant);
 		float inverseA = 1.f / a;
 
 		float t = (-b - sqrtfd) * inverseA; //We will calculate the t value using the quadratic formula
@@ -28,7 +28,7 @@ namespace rtc
 		a_HitData.pointIntersection = a_R.At(t); // Return the point where it has intersected
 		Util::vec3 outwardNormal = (a_HitData.pointIntersection - m_Center) * m_InversRadius;
 		a_HitData.SetFace(a_R, outwardNormal); // normilize the way where it is pointing at
-		UV(outwardNormal, a_HitData.u, a_HitData.v);
+		//UV(outwardNormal, a_HitData.u, a_HitData.v);
 		a_HitData.material = m_Mat;
 
 		return true;

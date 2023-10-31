@@ -30,12 +30,12 @@ namespace Template
 	void Game::Tick(float deltaTime)
 	{
 		Util::DebugUi d = Util::DebugUi(screen, Util::vec2(1032, 16));
-		screen->Clear(0);
+		screen->Clear(51);
 		m_Renderer.RenderScene();
+
 		for (int y = 0; y < imageHeight; y++)
 		{
 			memcpy(screen->GetBuffer() + (size_t)screen->GetWidth() * (size_t)y, m_Renderer.m_PixelBuffer + (size_t)imageWidth * (size_t)y, imageWidth * sizeof(Template::Pixel));
-			memcpy(screen->GetBuffer() + 512 + (size_t)screen->GetWidth() * (size_t)y, m_Renderer.m_PixelBufferBvh + (size_t)imageWidth * (size_t)y, imageWidth * sizeof(Template::Pixel));
 		}
 		
 		#pragma region Debug

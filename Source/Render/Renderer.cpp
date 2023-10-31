@@ -15,28 +15,18 @@ namespace rtc
 		m_Scene.LoadScene(sceneID);
 		m_ColorBuffer = new Util::color[imageWidth * imageHeight];
 		m_PixelBuffer = new Template::Pixel[imageWidth * imageHeight];
-		m_PixelBufferBvh = new Template::Pixel[imageWidth * imageHeight];
 		m_Background = Util::color(0.5f, 0.7f, 1.0f);
-		//m_Background = Util::color(0.f, 0.f, 0.f);
 
 		m_MaxSample = 10000;
 
 		int tileCountY = imageHeight / tileSize;
 		int tileCountX = imageWidth / tileSize;
-		int tile = tileCountX * tileCountY;
 
-		for (int y = 0, i = 0, ix = 0; y < tileCountY; y++)
+		for (int y = 0; y < tileCountY; y++)
 		{
-			for (int x = 0; x < tileCountX; x++, i++)
+			for (int x = 0; x < tileCountX; x++)
 			{
-				int fy = (ix / tileCountX) % tileCountY;
-				int fx = (ix + (x < tileCountX / 2)) % tileCountX;
-
-				fx += (ix >= tile) * (fy % 2 ? 1 : -1);
-
-				m_TileQueue.emplace_back(std::make_unique<rtc::Tile>(Util::vec2((float)fx, (float)fy)));
-
-				ix += 2;
+				m_TileQueue.emplace_back(std::make_unique<rtc::Tile>(Util::vec2((float)abs(x), (float)abs(y))));
 			}
 		}
 #if MULTITHREADING
@@ -93,13 +83,12 @@ namespace rtc
 
 	Template::Sprite s(new Template::Surface("Assets/skybox.png"), 1);
 	float k = 1.f / 255;
-	float piDivide = 1.f / Util::PI;
 	// -----------------------------------------------------------
 	// Renders the color where the ray hits
 	// -----------------------------------------------------------
-	Util::color Renderer::ColorRender(Util::Ray const& a_Ray, int a_Bounces, HitData& a_hitData, bool a_BvhView)
+	Util::color Renderer::ColorRender(Util::Ray const& a_Ray, int a_Bounces, HitData& a_hitData)
 	{
-		m_RayShot++;
+		//m_RayShot++;
 		
 		Util::color lightAttentuation;
 		Util::Ray scattered;
@@ -108,7 +97,7 @@ namespace rtc
 		if (a_Bounces <= 0)
 			return Util::color(0, 0, 0);
 
-		if (!a_BvhView)
+		//if (!a_BvhView)
 		{
 			if (m_Scene.m_TreeNode.HitTree(a_Ray, 0.001f, FLT_MAX, a_hitData))
 			{
@@ -154,8 +143,8 @@ namespace rtc
 			float theta = acosf(-dir.y);
 			float f = atan2f(-dir.z, dir.x) + Util::PI;
 
-			float u = f * piDivide;
-			float v = 1.f - (theta * piDivide);
+			float u = f * Util::INVERSE_PI;
+			float v = 1.f - (theta * Util::INVERSE_PI);
 
 			int width = s.GetWidth();
 			int height = s.GetHeight();
@@ -169,9 +158,9 @@ namespace rtc
 
 			return Util::color(r, g, b);
 		}
-		else
+		//else
 		{
-			return Util::color(0.f, 0.5f, 0) * (a_hitData.depth * Util::InvLayers);
+			//return Util::color(0.f, 0.5f, 0) * (a_hitData.depth * Util::InvLayers);
 		}
 	}
 
@@ -265,12 +254,16 @@ namespace rtc
 	}
 
 
+
 	// -----------------------------------------------------------
 	// Loops thread and handles Tile loading
 	// -----------------------------------------------------------
 	void Renderer::ThreadLoop()
 	{
 		size_t currentTile = 0;
+
+		float inverseH = 1.f / (imageHeight - 1);
+		float inverseW = 1.f / (imageWidth - 1);
 		while (m_ThreadRunning)
 		{
 			// Locks the next tile int until it is done adding
@@ -291,7 +284,6 @@ namespace rtc
 			// This handles if the tile is not being worked on if that is the case it will
 			// redo the loop
 			std::unique_ptr<rtc::Tile> const& tile = m_TileQueue[currentTile];
-
 			if (tile->GetState() != rtc::TileState::AWAITING)
 				continue;
 
@@ -303,11 +295,12 @@ namespace rtc
 			{
 				tile->m_currentSample++;
 				int yOffset = 0;
+				//int xOffset = 0;
 				// Loops through axis tile and draws it 
 				float scale = 1.f / tile->m_currentSample;
 				float randomSample = Util::frand();
-				float inverseH = 1.f / (imageHeight - 1);
-				float inverseW = 1.f / (imageWidth - 1);
+
+				HitData hitData;
 				for (int y = tileSize * tile->GetY(); y < tileSize * (tile->GetY() + 1); y++)
 				{
 					yOffset = y * imageWidth;
@@ -323,20 +316,18 @@ namespace rtc
 						Util::color c = m_ColorBuffer[x + yOffset];
 						c.r = sqrt(scale * c.r);
 						c.g = sqrt(scale * c.g);
-						c.b = sqrt(scale * c.b);
+						c.b = sqrt(scale * c.b); 
 
 						m_PixelBuffer[x + yOffset] = c.Get();
 #else
-						HitData hitData;
 						m_ColorBuffer[x + yOffset] += ColorRender(ray, 5, hitData);
 
 						Util::color c = m_ColorBuffer[x + yOffset];
-						c.r = sqrtf(scale * c.r);
-						c.g = sqrtf(scale * c.g);
-						c.b = sqrtf(scale * c.b);
+						c.r = Util::betterSqrt(scale * c.r);
+						c.g = Util::betterSqrt(scale * c.g);
+						c.b = Util::betterSqrt(scale * c.b);
 
 						m_PixelBuffer[x + yOffset] = c.Get();
-						m_PixelBufferBvh[x + yOffset] = ColorRender(ray, 1, hitData, true).Get();
 #endif
 					}
 				}

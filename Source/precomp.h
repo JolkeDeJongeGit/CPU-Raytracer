@@ -25,10 +25,10 @@
 #include <mutex>
 #include <atomic>
 
-constexpr int imageWidth = 512;
-constexpr float aspectRatio = 1.f / 1.f;
-constexpr int imageHeight = (int)(imageWidth / aspectRatio);
-constexpr int tileSize = 4;
+constexpr int imageWidth = 720;
+constexpr int imageHeight = 720;
+constexpr float aspectRatio = imageWidth / imageHeight;
+constexpr int tileSize = 16;
 constexpr int sceneID = 3;
 
 #include "template.h"

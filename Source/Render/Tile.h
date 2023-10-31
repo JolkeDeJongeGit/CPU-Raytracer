@@ -15,6 +15,7 @@ namespace rtc
 		Util::vec2 m_Index = (0.f);
 		std::mutex mutex;
 		TileState m_currentState = TileState::AWAITING;
+		Util::vec2 m_Dummy[3];
 	};
 }
 

@@ -15,7 +15,7 @@ namespace rtc
 		if (cosInside < 0) { cosInside = -cosInside; }
 		else { n = -a_Normal; }
 		float k = 1 - a_RefractionIndex * a_RefractionIndex * (1 - cosInside * cosInside);
-		Util::vec3 t = a_Direction * a_RefractionIndex + (a_RefractionIndex * cosInside - sqrtf(k)) * a_Normal;
+		Util::vec3 t = a_Direction * a_RefractionIndex + (a_RefractionIndex * cosInside - Util::betterSqrt(k)) * a_Normal;
 		return k < 0.f ? 0.f : t;
 	}
 
@@ -41,9 +41,9 @@ namespace rtc
 		float t = 0; // Length based on the ray vector where it hit
 		bool frontFace = false; // Tells if the ray hit the outward of surface or inwards
 		Material material;
-		float depth = 0;
-		float u = 0;
-		float	v = 0; // Here we define the normilized coords on the object
+		//float depth = 0;
+		//float u = 0;
+		//float v = 0; // Here we define the normilized coords on the object
 
 		inline void SetFace(Util::Ray const& a_R, Util::vec3 const& a_OutwardNormal) {
 			// If the ray direction is going the opposite side of the  a_OutwardNormal 

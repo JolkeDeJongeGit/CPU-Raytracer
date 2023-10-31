@@ -14,6 +14,7 @@ namespace Util
 		Util::vec3 m_Dir; 
 		Util::vec3 m_RDir; 
 	private:
+		Util::vec3 m_Dummy; 
 	};
 }
 

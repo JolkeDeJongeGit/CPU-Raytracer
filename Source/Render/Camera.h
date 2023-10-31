@@ -9,18 +9,19 @@ namespace rtc
 		Camera(float a_Fov, Util::point3 a_LookAt, Util::point3 a_LookFrom, float a_FocusDist, float a_Aperture);
 		inline Util::Ray GetRay(float a_XScreenNorm, float a_YScreenNorm) const
 		{
-			if (m_Aperture >= FLT_EPSILON)
-			{
-				Util::vec3 rd = m_LensRadius * Util::RandomUnitDisk();
-				Util::vec3 offset = m_XLocalAxis * rd.x + m_YLocalAxis * rd.y;
-				return Util::Ray(m_Translation + offset, (m_TopCorner + a_XScreenNorm * m_ViewportWidth - a_YScreenNorm * m_ViewportHeight - m_Translation - offset));
-			}
+			//if (m_Aperture >= FLT_EPSILON)
+			//{
+				//Util::vec3 rd = m_LensRadius * Util::RandomUnitDisk();
+				//Util::vec3 offset = m_XLocalAxis * rd.x + m_YLocalAxis * rd.y;
+				//return Util::Ray(m_Translation + offset, (m_TopCorner + a_XScreenNorm * m_ViewportWidth - a_YScreenNorm * m_ViewportHeight - m_Translation - offset));
+			//}
 
 			return Util::Ray(m_Translation, (m_TopCorner + a_XScreenNorm * m_ViewportWidth - a_YScreenNorm * m_ViewportHeight - m_Translation));
 		};
+
 		inline void TranslateCamera(Util::vec3 a_Translation)
 		{
-			m_Translation += a_Translation *0.2f;
+			m_Translation += a_Translation * 0.2f;
 			UpdateLookAt();
 		}
 
@@ -28,7 +29,7 @@ namespace rtc
 		{
 			// Calculating the fov to the new viewport witdh and height
 			float fovRads = Util::DegreeToRads(m_Fov);
-			float viewportHeight = 2.0f * tanf(fovRads / 2);
+			float viewportHeight = 2.0f * tanf(fovRads * 0.5f);
 			float viewportWidth = aspectRatio * viewportHeight;
 
 			// We rotate the local axis of the camera 
@@ -41,7 +42,7 @@ namespace rtc
 			m_ViewportWidth = m_FocusDist * viewportWidth * m_ZLocalAxis;
 
 			// Set the value on the top side of the screen based on the viewport
-			m_TopCorner = m_Translation + m_ViewportHeight / 2 - m_ViewportWidth / 2 - m_FocusDist * m_XLocalAxis;
+			m_TopCorner = m_Translation + m_ViewportHeight * 0.5f - m_ViewportWidth * 0.5f - m_FocusDist * m_XLocalAxis;
 		}
 		inline void RotateCamera(Util::vec3 a_Rotation)
 		{

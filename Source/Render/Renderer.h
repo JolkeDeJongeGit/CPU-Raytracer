@@ -10,7 +10,7 @@ namespace rtc
 	public:
 		Renderer();
 		~Renderer();
-		Util::color ColorRender(Util::Ray const& a_Ray, int a_Bounces,  HitData& a_hitData, bool a_BvhView = false);
+		Util::color ColorRender(Util::Ray const& a_Ray, int a_Bounces,  HitData& a_hitData);
 		Util::color LightRender(HitData& a_HitData);
 		Util::color NormalRender(Util::Ray const& a_Ray);
 		void RenderScene();
@@ -27,7 +27,6 @@ namespace rtc
 		float m_DoneElapsed = 0;
 		bool m_MoveRender = false;
 		Util::Pixel* m_PixelBuffer;
-		Util::Pixel* m_PixelBufferBvh;
 	private:
 		void ThreadLoop();
 
