@@ -41,7 +41,7 @@ namespace rtc
 		float t = 0; // Length based on the ray vector where it hit
 		bool frontFace = false; // Tells if the ray hit the outward of surface or inwards
 		Material material;
-		//float depth = 0;
+		float depth = 0;
 		//float u = 0;
 		//float v = 0; // Here we define the normilized coords on the object
 

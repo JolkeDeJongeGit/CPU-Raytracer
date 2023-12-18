@@ -135,7 +135,7 @@ namespace Util
                 if (!BoxRayIntersection(a_R)) // Does a intersection check
                     return false;
 
-                //a_HitData.depth++;
+                a_HitData.depth++;
 
                 bool hitLeft = m_Left->HitTree(a_R, a_Min, a_Max, a_HitData); // here we check if we hit the left object
                 // Same goes for the right side
@@ -306,7 +306,7 @@ namespace Util
                 if (!BoxRayIntersection(a_R, index)) // Does a intersection check
                     return false;
 
-                //a_HitData.depth++;
+                a_HitData.depth++;
                 index++;
                 bool hitLeft = HitTree(a_R, a_Min, a_Max, a_HitData, m_Pool[index].min.dummy); // here we check if we hit the left object
                 // Same goes for the right side
@@ -314,7 +314,7 @@ namespace Util
                  index++;
                 bool hitRight = HitTree(a_R, a_Min, hitLeft ? a_HitData.t : a_Max, a_HitData, m_Pool[index].min.dummy);
 
-                return (hitLeft | hitRight);
+                return (hitLeft || hitRight);
             }
         }
     private:

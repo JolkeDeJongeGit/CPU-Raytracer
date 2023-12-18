@@ -16,6 +16,7 @@
  */
 #define MULTITHREADING true
 #define NORMALVIEW false
+#define BVHVIEW false
 
 #include <corecrt_math.h>
 #include <cstdlib>
@@ -25,8 +26,8 @@
 #include <mutex>
 #include <atomic>
 
-constexpr int imageWidth = 720;
-constexpr int imageHeight = 720;
+constexpr int imageWidth = 832;
+constexpr int imageHeight = 624;
 constexpr float aspectRatio = imageWidth / imageHeight;
 constexpr int tileSize = 16;
 constexpr int sceneID = 3;

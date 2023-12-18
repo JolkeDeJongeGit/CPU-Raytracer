@@ -86,7 +86,7 @@ namespace rtc
 	// -----------------------------------------------------------
 	// Renders the color where the ray hits
 	// -----------------------------------------------------------
-	Util::color Renderer::ColorRender(Util::Ray const& a_Ray, int a_Bounces, HitData& a_hitData)
+	Util::color Renderer::ColorRender(Util::Ray const& a_Ray, int a_Bounces, HitData& a_hitData, bool a_BvhView)
 	{
 		//m_RayShot++;
 		
@@ -97,7 +97,7 @@ namespace rtc
 		if (a_Bounces <= 0)
 			return Util::color(0, 0, 0);
 
-		//if (!a_BvhView)
+		if (!a_BvhView)
 		{
 			if (m_Scene.m_TreeNode.HitTree(a_Ray, 0.001f, FLT_MAX, a_hitData))
 			{
@@ -158,9 +158,9 @@ namespace rtc
 
 			return Util::color(r, g, b);
 		}
-		//else
+		else
 		{
-			//return Util::color(0.f, 0.5f, 0) * (a_hitData.depth * Util::InvLayers);
+			return Util::color(0.f, 0.5f, 0) * (a_hitData.depth * Util::InvLayers);
 		}
 	}
 
@@ -300,7 +300,7 @@ namespace rtc
 				float scale = 1.f / tile->m_currentSample;
 				float randomSample = Util::frand();
 
-				HitData hitData;
+				//HitData hitData;
 				for (int y = tileSize * tile->GetY(); y < tileSize * (tile->GetY() + 1); y++)
 				{
 					yOffset = y * imageWidth;
@@ -320,14 +320,18 @@ namespace rtc
 
 						m_PixelBuffer[x + yOffset] = c.Get();
 #else
+						HitData hitData;
 						m_ColorBuffer[x + yOffset] += ColorRender(ray, 5, hitData);
 
 						Util::color c = m_ColorBuffer[x + yOffset];
 						c.r = Util::betterSqrt(scale * c.r);
 						c.g = Util::betterSqrt(scale * c.g);
 						c.b = Util::betterSqrt(scale * c.b);
-
+#if BVHVIEW
+						m_PixelBuffer[x + yOffset] = ColorRender(ray, 1, hitData, true).Get();
+#else
 						m_PixelBuffer[x + yOffset] = c.Get();
+#endif
 #endif
 					}
 				}

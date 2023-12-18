@@ -8,8 +8,8 @@
 #pragma comment(linker, "/manifestdependency:\"name='dlls_x64' version='1.0.0.0' type='x64'\"")
 #endif
 
-constexpr int ScreenWidth = 720;
-constexpr int ScreenHeight = 720;
+constexpr int ScreenWidth = 832;
+constexpr int ScreenHeight = 624;
 // #define FULLSCREEN
 #define ADVANCEDGL	// faster if your system supports it. Switches SDL2's texture buffer out for OpenGL texture buffer with mappings to CPU Memory. 
 

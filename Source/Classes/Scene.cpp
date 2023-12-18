@@ -66,8 +66,8 @@ namespace rtc
             m_Camera = Camera(90, Util::point3(0, 0, 1), Util::point3(13, 13, 7), 10, 0.1f);
             break;
         case 2: // Elipsoid 
-            m_SceneList.push_back(new Ellipsoid(Util::point3(2.f, 1.f, -1), Util::vec3(.3f, .6f, .3f), Material(Util::color(1.f, 1.f, 1.f), MaterialType::DIELECTRIC, 1.5f)));
-            m_SceneList.push_back(new Sphere(Util::point3(0, 1.f, -1), 1.f, Material(Util::color(1.f, 1.f, 1.f), MaterialType::DIELECTRIC, 1.5f)));
+            m_SceneList.push_back(new Ellipsoid(Util::point3(2.f, 1.f, -1), Util::vec3(.3f, .6f, .3f), Material(Util::color(0.5f, 0.5f, 0.5f), MaterialType::LAMBERTIAN, 1.5f)));
+            m_SceneList.push_back(new Sphere(Util::point3(0, 1.f, -1), 1.f, Material(Util::color(1.f, 1.f, 1.f), MaterialType::LAMBERTIAN, 1.5f)));
             m_SceneList.push_back(new Sphere(Util::point3(0, 1.f, -20), 1.f, Material(Util::color(1.f, 1.f, 1.f), MaterialType::LAMBERTIAN)));
 
             m_SceneList.push_back(new Sphere(Util::point3(0.f, -1000.5f, 0), 1000.f, material_ground));

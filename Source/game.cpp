@@ -39,19 +39,19 @@ namespace Template
 		}
 		
 		#pragma region Debug
-			d.Print("Debug info:");
-			d.Print("-----------------------------------------");
-			d.Print("FPS: ", (float)(1000.f / m_Renderer.m_FrameElapsed));
-			d.Print("Last frame: ", m_Renderer.m_FrameElapsed);
-			d.Print("Program running: ", deltaTimer += deltaTime);
-			d.Print("Amount of objects ",  m_Renderer.m_Scene.m_SceneList.size());
-			d.Print("-----------------------------------------");
-			d.Print("Current sample: ", m_Renderer.m_CurrentSample);
-			d.Print("amount of samples: ", m_Renderer.m_MaxSample);
-			d.Print("amount of Ray: ", (int)m_Renderer.m_RayShot);
-			d.Print("Ray Per Seconds: ", (int)rayPerSec);
-			d.Print("Time Done: ", m_Renderer.m_DoneElapsed / 1000.f, Util::color(1.f, 0, 0));
-			d.Print("-----------------------------------------");
+			//d.Print("Debug info:");
+			//d.Print("-----------------------------------------");
+			//d.Print("FPS: ", (float)(1000.f / m_Renderer.m_FrameElapsed));
+			//d.Print("Last frame: ", m_Renderer.m_FrameElapsed);
+			//d.Print("Program running: ", deltaTimer += deltaTime);
+			//d.Print("Amount of objects ",  m_Renderer.m_Scene.m_SceneList.size());
+			//d.Print("-----------------------------------------");
+			//d.Print("Current sample: ", m_Renderer.m_CurrentSample);
+			//d.Print("amount of samples: ", m_Renderer.m_MaxSample);
+			//d.Print("amount of Ray: ", (int)m_Renderer.m_RayShot);
+			//d.Print("Ray Per Seconds: ", (int)rayPerSec);
+			//d.Print("Time Done: ", m_Renderer.m_DoneElapsed / 1000.f, Util::color(1.f, 0, 0));
+			//d.Print("-----------------------------------------");
 		#pragma endregion
 
 		if (t.elapsed() >= 1000 && m_Renderer.m_DoneElapsed == 0)
@@ -67,37 +67,37 @@ namespace Template
 		if (key == 26) // W Key
 		{
 			m_Renderer.m_MoveRender = true;
-			m_Renderer.m_Scene.m_Camera.TranslateCamera(-m_Renderer.m_Scene.m_Camera.m_XLocalAxis * 0.5f );
+			m_Renderer.m_Scene.m_Camera.TranslateCamera(-m_Renderer.m_Scene.m_Camera.m_XLocalAxis * 1.5f );
 		}
 
 		if (key == 22) // S key
 		{
 			m_Renderer.m_MoveRender = true;
-			m_Renderer.m_Scene.m_Camera.TranslateCamera(m_Renderer.m_Scene.m_Camera.m_XLocalAxis  * 0.5f);
+			m_Renderer.m_Scene.m_Camera.TranslateCamera(m_Renderer.m_Scene.m_Camera.m_XLocalAxis  * 1.5f);
 		}
 
 		if (key == 4) // A Key
 		{
 			m_Renderer.m_MoveRender = true;
-			m_Renderer.m_Scene.m_Camera.TranslateCamera(-m_Renderer.m_Scene.m_Camera.m_ZLocalAxis * 0.5f);
+			m_Renderer.m_Scene.m_Camera.TranslateCamera(-m_Renderer.m_Scene.m_Camera.m_ZLocalAxis * 1.5f);
 		}
 
 		if (key == 7) // D key
 		{
 			m_Renderer.m_MoveRender = true;
-			m_Renderer.m_Scene.m_Camera.TranslateCamera(m_Renderer.m_Scene.m_Camera.m_ZLocalAxis * 0.5f);
+			m_Renderer.m_Scene.m_Camera.TranslateCamera(m_Renderer.m_Scene.m_Camera.m_ZLocalAxis * 1.5f);
 		}
 
 		if (key == 44) // space key
 		{
 			m_Renderer.m_MoveRender = true;
-			m_Renderer.m_Scene.m_Camera.TranslateCamera(m_Renderer.m_Scene.m_Camera.m_YLocalAxis * 0.5f);
+			m_Renderer.m_Scene.m_Camera.TranslateCamera(m_Renderer.m_Scene.m_Camera.m_YLocalAxis * 1.5f);
 		}
 
 		if (key == 224) // cntr key
 		{
 			m_Renderer.m_MoveRender = true;
-			m_Renderer.m_Scene.m_Camera.TranslateCamera(-m_Renderer.m_Scene.m_Camera.m_YLocalAxis * 0.5f);
+			m_Renderer.m_Scene.m_Camera.TranslateCamera(-m_Renderer.m_Scene.m_Camera.m_YLocalAxis * 1.5f);
 		}
 
 		if (key == 46)
